@@ -1,0 +1,27 @@
+# Compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+.env
+
+# Local development settings
+.idea/
+.vscode/
+
+# Editor specific temporary files
+*.swp
+*.swo
+
+# Logs and databases
+*.log
+*.sqlite3
+*.db
+
+# OS-generated files
+.DS_Store
+Thumbs.db
