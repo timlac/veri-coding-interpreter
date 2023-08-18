@@ -20,6 +20,7 @@ def find_non_matching_objects(metas1, metas2):
 
         if not found:
             ret.append(m1)
+
     return ret
 
 

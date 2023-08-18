@@ -25,3 +25,7 @@ env/
 # OS-generated files
 .DS_Store
 Thumbs.db
+
+files/out/master.csv
+
+fiddle.py
