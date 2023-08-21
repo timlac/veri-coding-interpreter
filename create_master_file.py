@@ -3,6 +3,8 @@ from pathlib import Path
 
 import pandas as pd
 
+from config import excluded_participants
+
 from metadata import Metadata
 from meta_from_file import get_metadata_from_functionals_file
 
@@ -15,7 +17,7 @@ def set_column_values(df, obj):
 
 file_metadatas = get_metadata_from_functionals_file()
 
-path = "/home/tim/work/nexa/nexa-opensmile-processing/files/out"
+path = "/home/tim/work/nexa/nexa-opensmile-processing/files/out/verimind_egemaps_v2_lld"
 
 
 slices = []
@@ -30,6 +32,9 @@ for file in os.listdir(path):
 
     meta = Metadata(filename)
     meta.set_metadata()
+
+    if meta.participant in excluded_participants:
+        continue
 
     for fm in file_metadatas:
         if fm.statement == meta.statement and fm.participant == meta.participant:
