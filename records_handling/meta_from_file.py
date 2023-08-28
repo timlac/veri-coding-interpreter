@@ -35,8 +35,12 @@ class MetaRecord:
 
 
 def get_metadata_from_functionals_file():
+    """
+    Read records file and return a list of metadata objects
+    :return:
+    """
 
-    path = "files/functionals/audiovittne2_for_machlearn.csv"
+    path = "../files/functionals/audiovittne2_for_machlearn.csv"
 
     df_full = pd.read_csv(path, delimiter=";")
     df = df_full[["sttmnt_ID",

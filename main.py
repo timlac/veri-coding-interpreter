@@ -1,11 +1,7 @@
-import os
 import pandas as pd
-from pathlib import Path
 
-from meta_from_file import get_metadata_from_functionals_file
-from meta_from_dir import meta_from_dir
-
-from metadata import Metadata
+from records_handling.meta_from_file import get_metadata_from_functionals_file
+from file_handling.read_files import get_metadata_from_files
 
 
 def find_non_matching_objects(metas1, metas2):
@@ -30,7 +26,7 @@ def list2df(input_list):
 
 file_metadatas = get_metadata_from_functionals_file()
 
-dir_metadatas = meta_from_dir()
+dir_metadatas = get_metadata_from_files()
 
 dir_not_in_file = find_non_matching_objects(dir_metadatas, file_metadatas)
 df_dir_not_in_file = list2df(dir_not_in_file)

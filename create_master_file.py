@@ -3,11 +3,10 @@ from pathlib import Path
 
 import pandas as pd
 
-from config import excluded_participants
+from constants import excluded_participants
 
-from metadata import Metadata
-from meta_from_file import get_metadata_from_functionals_file
-
+from file_handling.read_files import get_metadata_from_files
+from records_handling.read_records import get_metadataf_from_records
 
 def set_column_values(df, obj):
     for key, value in vars(obj).items():
@@ -15,7 +14,7 @@ def set_column_values(df, obj):
     return df
 
 
-file_metadatas = get_metadata_from_functionals_file()
+file_metadatas = get_metadata_from_files()
 
 path = "/home/tim/work/nexa/nexa-opensmile-processing/files/out/verimind_egemaps_v2_lld"
 
