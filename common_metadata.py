@@ -2,6 +2,19 @@ import math
 import re
 
 
+def get_digits_only(input_string):
+    """
+    :param input_string: some string that may contain digits and characters
+    :return: only digits
+    """
+    if isinstance(input_string, str):
+        input_string = re.sub("\\D", "", input_string)
+
+    # cast return value as int
+    input_string = int(input_string)
+    return input_string
+
+
 def transform_to_float(input_string):
     if isinstance(input_string, str):
         # Keep only digits, commas, and hyphens
@@ -78,11 +91,22 @@ class CommonMetadata:
                  free_cued_recall=DEFAULT_FREE_CUED_RECALL):
 
         self.filename = str(filename)
-        self.study = int(study)
+
+        self.study = get_digits_only(study)
         self.statement = transform_to_float(statement)
-        self.session = int(session)
-        self.participant = int(participant)
+        self.session = get_digits_only(session)
+        self.participant = get_digits_only(participant)
+
         self.accuracy = int(accuracy)
+
         self.confidence_level = handle_nan(confidence_level)
         self.confidence_type = handle_nan(confidence_type)
         self.free_cued_recall = int(free_cued_recall)
+
+    def __eq__(self, other):
+        if isinstance(other, CommonMetadata):
+            return self.statement == other.statement and self.participant == other.participant
+        return NotImplemented
+
+    def __hash__(self):
+        return hash((self.statement, self.participant))

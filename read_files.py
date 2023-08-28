@@ -5,21 +5,12 @@ import re
 from common_metadata import CommonMetadata
 
 
-def get_digits_only(mixed_string):
-    """
-    :param mixed_string: some string that may contain digits and characters
-    :return: only digits
-    """
-    ret = re.sub("\\D", "", mixed_string)
-    return int(ret)
-
-
-def process_filename(filename):
+def filename2metadata(filename):
     name_list = filename.split("_")
 
-    study = get_digits_only(name_list[0])
-    participant = get_digits_only(name_list[1])
-    session = get_digits_only(name_list[2])
+    study = name_list[0]
+    participant = name_list[1]
+    session = name_list[2]
     statement = name_list[3]
 
     meta = CommonMetadata(filename=filename,
@@ -42,7 +33,7 @@ def get_metadata_from_files():
         else:
             filename = Path(file).stem
 
-        meta = process_filename(filename)
+        meta = filename2metadata(filename)
 
         ret.append(meta)
 

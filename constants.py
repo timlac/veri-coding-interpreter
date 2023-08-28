@@ -1,5 +1,3 @@
-
-
 excluded_participants = [6,
                          33,
                          38,

@@ -5,8 +5,9 @@ import pandas as pd
 
 from constants import excluded_participants
 
-from file_handling.read_files import get_metadata_from_files
-from records_handling.read_records import get_metadataf_from_records
+from read_records import get_metadata_from_records
+from read_files import filename2metadata
+
 
 def set_column_values(df, obj):
     for key, value in vars(obj).items():
@@ -14,7 +15,7 @@ def set_column_values(df, obj):
     return df
 
 
-file_metadatas = get_metadata_from_files()
+record_metadatas = get_metadata_from_records()
 
 path = "/home/tim/work/nexa/nexa-opensmile-processing/files/out/verimind_egemaps_v2_lld"
 
@@ -29,18 +30,17 @@ for file in os.listdir(path):
     else:
         filename = Path(file).stem
 
-    meta = Metadata(filename)
-    meta.set_metadata()
+    file_metadata = filename2metadata(filename)
 
-    if meta.participant in excluded_participants:
+    if file_metadata.participant in excluded_participants:
         continue
 
-    for fm in file_metadatas:
-        if fm.statement == meta.statement and fm.participant == meta.participant:
+    for record_metadata in record_metadatas:
+        if record_metadata == file_metadata:
 
             df = pd.read_csv(os.path.join(path, file))
 
-            set_column_values(df, fm)
+            set_column_values(df, record_metadata)
 
             slices.append(df)
 
