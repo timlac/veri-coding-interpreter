@@ -1,7 +1,7 @@
 import pandas as pd
 
-from read_records import get_metadata_from_records
-from read_files import get_metadata_from_files
+from readers.read_records import get_metadata_from_records
+from readers.read_files import get_metadata_from_files
 
 
 def find_non_matching_objects(metas1, metas2):

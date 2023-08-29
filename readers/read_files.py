@@ -1,8 +1,7 @@
 import os
 from pathlib import Path
-import re
 
-from common_metadata import CommonMetadata
+from metadata.common_metadata import CommonMetadata
 
 
 def filename2metadata(filename):

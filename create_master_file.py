@@ -5,8 +5,8 @@ import pandas as pd
 
 from constants import excluded_participants
 
-from read_records import get_metadata_from_records
-from read_files import filename2metadata
+from readers.read_records import get_metadata_from_records
+from readers.read_files import filename2metadata
 
 
 def set_column_values(df, obj):
