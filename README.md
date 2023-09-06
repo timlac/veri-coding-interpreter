@@ -1,3 +1,3 @@
 # veri-coding-interpreter
 
-VeriMind filename interpreter. 
+VeriMind filename interpreter.

@@ -2,6 +2,7 @@ import pandas as pd
 
 from readers.read_records import get_metadata_from_records
 from readers.read_files import get_metadata_from_files
+from constants import opensmile_files_directory, records_file_path
 
 
 def find_non_matching_objects(metas1, metas2):
@@ -24,8 +25,8 @@ def list2df(input_list):
     return pd.DataFrame([vars(m) for m in input_list])
 
 
-record_metadatas = get_metadata_from_records()
-file_metadatas = get_metadata_from_files()
+record_metadatas = get_metadata_from_records(records_file_path)
+file_metadatas = get_metadata_from_files(opensmile_files_directory)
 
 files_not_in_records = find_non_matching_objects(file_metadatas, record_metadatas)
 df_files_not_in_records = list2df(files_not_in_records)

@@ -3,7 +3,7 @@ import pandas as pd
 from metadata.common_metadata import CommonMetadata
 
 
-def get_metadata_from_records():
+def get_metadata_from_records(file_path):
     metadata_columns = ["sttmnt_ID",
                         "Participant",
                         "Statement",
@@ -12,9 +12,7 @@ def get_metadata_from_records():
                         "Confidence_type",
                         "Free_cued_recall"]
 
-    path = "../files/functionals/audiovittne2_for_machlearn.csv"
-
-    df = pd.read_csv(path, delimiter=";")
+    df = pd.read_csv(file_path, delimiter=";")
 
     df = df[metadata_columns]
 

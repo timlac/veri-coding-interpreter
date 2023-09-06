@@ -21,11 +21,10 @@ def filename2metadata(filename):
     return meta
 
 
-def get_metadata_from_files():
+def get_metadata_from_files(dir_path):
     ret = []
 
-    path = "/home/tim/Work/nexa/nexa-opensmile-processing/files/out"
-    for file in os.listdir(path):
+    for file in os.listdir(dir_path):
 
         if file.startswith(".gitkeep"):
             continue

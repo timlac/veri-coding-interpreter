@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from constants import excluded_participants
+from constants import excluded_participants, opensmile_files_directory, records_file_path
 
 from readers.read_records import get_metadata_from_records
 from readers.read_files import filename2metadata
@@ -15,10 +15,7 @@ def set_column_values(df, obj):
     return df
 
 
-record_metadatas = get_metadata_from_records()
-
-opensmile_files_directory = "/home/tim/Work/nexa/nexa-opensmile-processing/files/out"
-
+record_metadatas = get_metadata_from_records(records_file_path)
 
 slices = []
 
@@ -50,7 +47,7 @@ for file in os.listdir(opensmile_files_directory):
 
 
 df = pd.concat(slices)
-df.to_csv("files/out/master_functionals.csv", index=False)
+df.to_csv("files/out/master_low_level.csv", index=False)
 
 
 
